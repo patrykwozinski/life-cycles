@@ -12,5 +12,8 @@
             "email": "patryk.wozinski@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
 }
