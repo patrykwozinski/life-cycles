@@ -1,0 +1,16 @@
+{
+    "name": "freeq/alc",
+    "description": "Application Life Cycle manager",
+    "type": "library",
+    "require": {
+        "php": ">=7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patryk Woziński",
+            "email": "patryk.wozinski@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
