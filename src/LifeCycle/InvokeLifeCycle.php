@@ -10,6 +10,10 @@ declare(strict_types=1);
 namespace Freeq\LifeCycle;
 
 
-final class InvokeLifeCycle
+final class InvokeLifeCycle implements LifeCycleInterface
 {
+    public function run(callable $app)
+    {
+        return $app();
+    }
 }
