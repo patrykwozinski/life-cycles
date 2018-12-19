@@ -15,5 +15,11 @@
     "minimum-stability": "stable",
     "require-dev": {
         "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Freeq\\AppLifeCycle\\": "src/AppLifeCycle/",
+            "Tests\\Freeq\\AppLifeCycle\\": "tests/AppLifeCycle/"
+        }
     }
 }
