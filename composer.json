@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Freeq\\AppLifeCycle\\": "src/AppLifeCycle/",
-            "Tests\\Freeq\\AppLifeCycle\\": "tests/AppLifeCycle/"
+            "Freeq\\LifeCycle\\": "src/LifeCycle/",
+            "Tests\\Freeq\\LifeCycle\\": "tests/LifeCycle/"
         }
     }
 }
