@@ -13,7 +13,7 @@ namespace Freeq\LifeCycle\Doctrine;
 use Freeq\LifeCycle\LifeCycleInterface;
 use Doctrine\DBAL\Connection;
 
-final class DoctrineTransactionLifeCycle implements LifeCycleInterface
+final class DoctrineTransactionalLifeCycle implements LifeCycleInterface
 {
 	/** @var LifeCycleInterface */
 	private $lifeCycle;
@@ -42,6 +42,8 @@ final class DoctrineTransactionLifeCycle implements LifeCycleInterface
 		catch (\Exception $exception)
 		{
 			$this->connection->rollBack();
+
+			throw $exception;
 		}
 	}
 }
