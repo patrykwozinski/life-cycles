@@ -31,7 +31,7 @@ final class RepeaterLifeCycleTest extends TestCase
 		$this->assertEquals($helloWorld, $response);
 	}
 
-	public function test_it_throws_exception_because_of_exceeded_limit()
+	public function test_it_throws_exception_because_of_exceeded_limit(): void
 	{
 		$this->expectException(\RuntimeException::class);
 
@@ -43,5 +43,36 @@ final class RepeaterLifeCycleTest extends TestCase
 
 		// When
 		$repaterLifeCycle->run($testingCallback);
+	}
+
+	public function test_it_throws_exception_because_of_exception_not_handled(): void
+	{
+		$this->expectException(\RuntimeException::class);
+
+		// Given
+		$handledException = \LogicException::class;
+		$testingCallback  = function () {
+			return 'Hello world';
+		};
+		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(2), 1, $handledException);
+
+		// When
+		$repaterLifeCycle->run($testingCallback);
+	}
+
+	public function test_it_returns_string_because_of_exception_is_handled(): void
+	{
+		// Given
+		$handledException = \RuntimeException::class;
+		$testingCallback  = function () {
+			return 'Hello world';
+		};
+		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(2), 2, $handledException);
+
+		// When
+		$response = $repaterLifeCycle->run($testingCallback);
+
+		// Then
+		$this->assertEquals('Hello world', $response);
 	}
 }

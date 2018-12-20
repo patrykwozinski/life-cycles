@@ -18,14 +18,18 @@ final class RepeaterLifeCycle implements LifeCycleInterface
 	/** @var int */
 	private $retryLimit;
 
+	/** @var string | null */
+	private $expectedException;
+
 	/** @var int */
 	private $currentTry;
 
-	public function __construct(LifeCycleInterface $lifeCycle, int $retryLimit)
+	public function __construct(LifeCycleInterface $lifeCycle, int $retryLimit, string $expectedException = null)
 	{
-		$this->lifeCycle  = $lifeCycle;
-		$this->retryLimit = $retryLimit;
-		$this->currentTry = 1;
+		$this->lifeCycle         = $lifeCycle;
+		$this->retryLimit        = $retryLimit;
+		$this->expectedException = $expectedException;
+		$this->currentTry        = 1;
 	}
 
 	public function run(callable $app)
@@ -36,7 +40,9 @@ final class RepeaterLifeCycle implements LifeCycleInterface
 		}
 		catch (\Exception $exception)
 		{
-			if ($this->currentTry < $this->retryLimit)
+			$handledException = null === $this->expectedException ?: $exception instanceof $this->expectedException;
+
+			if ($handledException && $this->currentTry < $this->retryLimit)
 			{
 				++$this->currentTry;
 
