@@ -1,2 +1,2 @@
-# alc
-Application Life Cycle
+# Life Cycles
+ Life Cycles for your application
