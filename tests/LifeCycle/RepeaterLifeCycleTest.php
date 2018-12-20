@@ -54,7 +54,7 @@ final class RepeaterLifeCycleTest extends TestCase
 		$testingCallback  = function () {
 			return 'Hello world';
 		};
-		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(2), 1, $handledException);
+		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(2), 2, $handledException);
 
 		// When
 		$repaterLifeCycle->run($testingCallback);
