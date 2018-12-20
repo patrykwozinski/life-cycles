@@ -3,17 +3,17 @@
  * Created by PhpStorm.
  * User: patryk.wozinski
  * Date: 20/12/2018
- * Time: 16:22
+ * Time: 12:45
  */
 declare(strict_types=1);
 
-namespace Freeq\LifeCycle\Propel;
+namespace Freeq\LifeCycle\Adapter;
 
 
 use Freeq\LifeCycle\LifeCycleInterface;
-use Propel\Runtime\Propel;
+use Doctrine\DBAL\Connection;
 
-final class PropelTransactionalLifeCycle
+final class DoctrineTransactionalLifeCycle implements LifeCycleInterface
 {
 	/** @var LifeCycleInterface */
 	private $lifeCycle;
@@ -21,10 +21,10 @@ final class PropelTransactionalLifeCycle
 	/** @var Connection */
 	private $connection;
 
-	public function __construct(LifeCycleInterface $lifeCycle, string $connectionName)
+	public function __construct(LifeCycleInterface $lifeCycle, Connection $connection)
 	{
 		$this->lifeCycle  = $lifeCycle;
-		$this->connection = Propel::getConnection($connectionName);
+		$this->connection = $connection;
 	}
 
 	public function run(callable $app)

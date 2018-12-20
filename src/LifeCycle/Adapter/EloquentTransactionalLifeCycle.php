@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Freeq\LifeCycle\Eloquent;
+namespace Freeq\LifeCycle\Adapter;
 
 
 use Freeq\LifeCycle\LifeCycleInterface;
