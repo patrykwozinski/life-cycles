@@ -38,11 +38,11 @@ final class RepeaterLifeCycle implements LifeCycleInterface
 		{
 			return $this->lifeCycle->run($app);
 		}
-		catch (\Exception $exception)
+		catch (\throwable $exception)
 		{
-			$handledException = null === $this->expectedException ?: $exception instanceof $this->expectedException;
+			$isHandled = null === $this->expectedException ?: $exception instanceof $this->expectedException;
 
-			if ($handledException && $this->currentTry < $this->retryLimit)
+			if ($isHandled && $this->currentTry < $this->retryLimit)
 			{
 				++$this->currentTry;
 
