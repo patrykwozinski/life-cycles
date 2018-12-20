@@ -20,8 +20,8 @@ final class DelayedLifeCycleTest extends TestCase
 	{
 		// Given
 		$spyLifeTime       = new SpyTimeLifeCycle(2, 500);
-		$delayedLifeCycle  = new DelayedLifeCycle($spyLifeTime, 1000);
-		$repeaterLifecycle = new RepeaterLifeCycle($delayedLifeCycle, 3);
+		$delayedLifeCycle  = new DelayedLifeCycle($spyLifeTime, 500);
+		$repeaterLifecycle = new RepeaterLifeCycle($delayedLifeCycle, 2);
 
 		// When
 		$response = $repeaterLifecycle->run(function () {
