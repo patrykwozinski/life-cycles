@@ -14,18 +14,18 @@ use Freeq\LifeCycle\InvokeLifeCycle;
 
 final class InvokeLifeCycleTest extends TestCase
 {
-    public function test_it_returns_helloworld_when_passed_callable(): void
-    {
-        // Given
-        $user = 'Patryk';
-        $testing = function () use ($user) {
-            return \sprintf('Hello World %s', $user);
-        };
-        $lifeCycle = new InvokeLifeCycle;
+	public function test_it_returns_helloworld_when_passed_callable(): void
+	{
+		// Given
+		$user      = 'Patryk';
+		$testing   = function () use ($user) {
+			return \sprintf('Hello World %s', $user);
+		};
+		$lifeCycle = new InvokeLifeCycle;
 
-        // When
-        $response = $lifeCycle->run($testing);
+		// When
+		$response = $lifeCycle->run($testing);
 
-        $this->assertEquals('Hello World Patryk', $response);
-    }
+		$this->assertEquals('Hello World Patryk', $response);
+	}
 }

@@ -12,5 +12,5 @@ namespace Freeq\LifeCycle;
 
 interface LifeCycleInterface
 {
-    public function run(callable $app);
+	public function run(callable $app);
 }

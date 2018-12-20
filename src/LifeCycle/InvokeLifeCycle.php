@@ -12,8 +12,8 @@ namespace Freeq\LifeCycle;
 
 final class InvokeLifeCycle implements LifeCycleInterface
 {
-    public function run(callable $app)
-    {
-        return $app();
-    }
+	public function run(callable $app)
+	{
+		return $app();
+	}
 }

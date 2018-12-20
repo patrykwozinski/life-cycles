@@ -10,11 +10,38 @@ declare(strict_types=1);
 namespace Tests\Freeq\LifeCycle;
 
 
+use Freeq\LifeCycle\RepeaterLifeCycle;
+use Tests\Freeq\LifeCycle\TestDouble\SpyLifeCycle;
+
 final class RepeaterLifeCycleTest extends TestCase
 {
-	public function test_it_repeats_twice_before_returning_string(): void
+	public function test_it_fails_twice_before_returning_string(): void
 	{
-		$helloWorld = 'Hello World!';
+		// Given
+		$helloWorld       = 'Hello World!';
+		$testingCallback  = function () use ($helloWorld) {
+			return $helloWorld;
+		};
+		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(3), 3);
 
+		// When
+		$response = $repaterLifeCycle->run($testingCallback);
+
+		// Then
+		$this->assertEquals($helloWorld, $response);
+	}
+
+	public function test_it_throws_exception_because_of_exceeded_limit()
+	{
+		$this->expectException(\RuntimeException::class);
+
+		// Given
+		$testingCallback  = function () {
+			return 'Hello world';
+		};
+		$repaterLifeCycle = new RepeaterLifeCycle(new SpyLifeCycle(2), 1);
+
+		// When
+		$repaterLifeCycle->run($testingCallback);
 	}
 }

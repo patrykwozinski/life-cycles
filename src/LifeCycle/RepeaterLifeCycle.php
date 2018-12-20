@@ -12,8 +12,38 @@ namespace Freeq\LifeCycle;
 
 final class RepeaterLifeCycle implements LifeCycleInterface
 {
-    public function run(callable $app)
-    {
-        // TODO: Implement run() method.
-    }
+	/** @var LifeCycleInterface */
+	private $lifeCycle;
+
+	/** @var int */
+	private $retryLimit;
+
+	/** @var int */
+	private $currentTry;
+
+	public function __construct(LifeCycleInterface $lifeCycle, int $retryLimit)
+	{
+		$this->lifeCycle  = $lifeCycle;
+		$this->retryLimit = $retryLimit;
+		$this->currentTry = 1;
+	}
+
+	public function run(callable $app)
+	{
+		try
+		{
+			return $this->lifeCycle->run($app);
+		}
+		catch (\Exception $exception)
+		{
+			if ($this->currentTry < $this->retryLimit)
+			{
+				++$this->currentTry;
+
+				return $this->run($app);
+			}
+
+			throw $exception;
+		}
+	}
 }
