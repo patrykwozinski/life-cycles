@@ -14,7 +14,7 @@ use Freeq\LifeCycle\InvokeLifeCycle;
 
 final class InvokeLifeCycleTest extends TestCase
 {
-    public function testItInvokesWhenPushedFunction(): void
+    public function test_it_returns_helloworld_when_passed_callable(): void
     {
         // Given
         $user = 'Patryk';

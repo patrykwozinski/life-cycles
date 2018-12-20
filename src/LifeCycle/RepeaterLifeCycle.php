@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Freeq\LifeCycle;
 
 
-final class RetrierLifeCycle implements LifeCycleInterface
+final class RepeaterLifeCycle implements LifeCycleInterface
 {
     public function run(callable $app)
     {
