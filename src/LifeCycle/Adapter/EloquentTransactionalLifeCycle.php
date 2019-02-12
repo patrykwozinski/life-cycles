@@ -35,7 +35,7 @@ final class EloquentTransactionalLifeCycle implements LifeCycleInterface
 
 			return $response;
 		}
-		catch (\Exception $exception)
+		catch (\throwable $exception)
 		{
 			DB::rollBack();
 
