@@ -39,7 +39,7 @@ final class PropelTransactionalLifeCycle
 
 			return $response;
 		}
-		catch (\Exception $exception)
+		catch (\throwable $exception)
 		{
 			$this->connection->rollBack();
 
