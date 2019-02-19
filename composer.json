@@ -1,6 +1,6 @@
 {
     "name": "freeq/alc",
-    "description": "Application Life Cycle manager",
+    "description": "Application Life Cycle Manager",
     "type": "library",
     "require": {
         "php": ">=7.1"
